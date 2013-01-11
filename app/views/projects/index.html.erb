@@ -27,9 +27,6 @@
     <tbody>
     <tr class="nc">
       <td colspan="4" class="add-new-task">
-        <script>
-          $('.add-new-task').load('/projects/1/tasks/new .wrap-new-task');
-        </script>
       </td>
     </tr>
 
@@ -70,13 +67,20 @@
 
 </div>
 
-  <script>
-      $('.update').click(function(){ 
-        href=$(this).parent('.edit').find('a').attr("href");
-        hDiv= href + ' .wrap-update';
-        $('.wrap-dialog').load(hDiv).show('slow'); 
-      });
-      $('.new-project').click(function(){ 
-        $('.wrap-dialog').load('/projects/new .wrap-new-project').show('slow'); 
-      });
-  </script>
+<script>
+  $('.update').click(function(){ 
+    href=$(this).parent('.edit').find('a').attr("href");
+    hDiv= href + ' .wrap-update';
+    $('.wrap-dialog').load(hDiv).show('slow'); 
+  });
+
+  $('.new-project').click(function(){ 
+    $('.wrap-dialog').load('/projects/new .wrap-new-project').show('slow'); 
+  });
+
+  $('.project').each(function(){ 
+    href=$(this).find('.update-link').attr("href").replace('edit', 'tasks/new');
+    hDiv= href + ' .wrap-new-task';
+    $('.add-new-task').load(hDiv); 
+  });
+</script>
