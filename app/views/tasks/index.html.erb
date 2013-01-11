@@ -1,0 +1,23 @@
+<h1>Listing tasks</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= task.description %></td>
+    <td><%= link_to 'Show', [task.project, task] %></td>
+    <td><%= link_to 'Edit', edit_project_task_path(task.project, task) %></td>
+    <td><%= link_to 'Destroy', [task.project, task], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Task', new_project_task_path(params[:project_id]), :class => 'add-new-task' %>

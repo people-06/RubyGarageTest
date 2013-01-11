@@ -1,0 +1,154 @@
+// Place all the styles related to the Projects controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* Start Reset */
+
+* { margin: 0; padding: 0 }
+img { border: 0 }
+a { text-decoration: none; color: #000 }
+a:hover { text-decoration: underline }
+ul { list-style-type: none }
+select, button, input.datepicker { outline: none }
+table { border-collapse: collapse; border-spacing: 0 }
+
+/* END Reset */
+
+
+html { 
+background: #D5CFC3;
+background-image: linear-gradient(top, #333333 0%, #333333 1%, #D7D1C3 1%, #CD9710 65%, #BE6824 100%);
+background-image: -o-linear-gradient(top, #333333 0%, #333333 1%, #D7D1C3 1%, #CD9710 65%, #BE6824 100%);
+background-image: -moz-linear-gradient(top, #333333 0%, #333333 1%, #D7D1C3 1%, #CD9710 65%, #BE6824 100%);
+background-image: -webkit-linear-gradient(top, #333333 0%, #333333 1%, #D7D1C3 1%, #CD9710 65%, #BE6824 100%);
+background-image: -ms-linear-gradient(top, #333333 0%, #333333 1%, #D7D1C3 1%, #CD9710 65%, #BE6824 100%);
+background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, #333333),
+	color-stop(0.01, #333333),
+	color-stop(0.01, #D7D1C3),
+	color-stop(0.65, #CD9710),
+	color-stop(1, #BE6824)
+);
+
+min-height: 100%;
+}
+
+body{ font: 14px Arial, sans-serif }
+
+.wrap{ margin: 0 auto; position: relative; width: 700px }
+
+
+header { color: #333; padding: 40px 0 0; text-align: center; text-shadow: 0 1px 1px #fff; text-transform: uppercase }
+h1 { font-size: 34px }
+h2 { font-size: 28px }
+
+section {  }
+
+.table-wrap{ border-radius: 2px 2px 20px 20px; box-shadow: 0px 1px 1px #333; margin-top: 40px; overflow: hidden}
+.project-tasks { background:#fff; width: 100% }
+.project-tasks .project , .project-tasks tr:first-child { height: 50px }
+.project-tasks th {
+	background:#4a78b3;
+	//background-image: url(<%= images 'bg.png' %>)
+	border-top: 1px solid #333;
+	color: #fff;
+	font: normal 20px Arial, sans-serif;
+	padding: 8px 10px;
+	text-align: left;
+	text-shadow: 1px 1px 1px #333
+}
+.project-tasks th a{ color: #fff }
+.project-tasks th:first-child { border-left: 1px solid #333 }
+.project-tasks th:last-child { border-right: 1px solid #333 }
+
+.project-tasks tr { height: 45px }
+.project-tasks tr:not(.nc) { cursor: pointer }
+.project-tasks td { border: 1px solid #aaa; color: #555; padding: 8px 10px }
+
+.project-tasks .done { text-align: center; width: 8% }
+.project-tasks .edit, .project-tasks .del { text-align: center; width: 8% }
+.project-tasks .add-new-task { background: #cfcfcf }
+.project-name { width: 470px }
+
+.task-item:hover { background:#fcfed6 }
+.task-item:last-child td{ padding: 10px 10px 20px }
+.task-item a { color: #555 }
+.task-item .edit { border-right: 0; padding-right: 0 }
+.task-item .del { border-left: 0; padding-left: 0 }
+.task-item:hover .update, task-item:hover del a { border-right: 1px solid #aaa; cursor: pointer; padding-right: 10px; }
+.project-tasks .del a, .update { visibility: hidden }
+tr:hover .update, tr:hover .del a { visibility: visible }
+.update-link { display: none; }
+
+.new-project{
+	background:#4a78b3;
+	border: 1px solid #333;
+	border-radius: 2px;
+	box-shadow: inset 0px 1px 1px #fff;
+	color: #fff;
+	cursor: pointer; 
+	display: block;
+	font: bold 20px/30px Arial,
+	sans-serif;
+	padding: 12px 0;
+	margin: 45px auto;
+	text-align: center;
+	text-shadow: 1px -1px 1px #333;
+	width: 210px
+}
+
+.wrap-new-task .done { display: none }
+.new_task .field, .new_task .actions { display: inline-block; float: left; }
+.new_task input { border: 0; border-radius: 2px; box-shadow: inset 0 1px 1px #333; padding: 8px }
+.wrap-new-task #task_description { width: 550px }
+.wrap-new-task #task_deadline { width: 100px }
+.wrap-new-task #task_deadline { display: none }
+.wrap-new-task .actions input { cursor: pointer }
+
+footer { 
+	color: #fff;
+	padding-bottom: 30px;
+	text-align: center;
+}
+
+.wrap-dialog{
+	background: #aaa;
+	box-shadow: 0 0 20px #fff;
+	height: 300px;
+	width: 400px;
+
+	position: absolute;
+	top: 155px;
+	left: 150px;
+	padding: 20px;
+
+	display: none;
+}
+
+.wrap-update { width: 360px }
+.wrap-update  input { height: 30px; margin-top: 20px; width: 400px }
+.wrap-update .deadline { width: 100px }
+.wrap-update input[type=submit] { width: 200px }
+.wrap-update input[type=checkbox] { height: 22px; width: 25px }
+.wrap-update label.done { position: relative; top: -7px }
+.wrap-update .cancel {
+	float: right;
+	margin-top: -25px;
+	margin-right: 25px;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.wrap-new-project { width: 360px }
+.wrap-new-project  input { height: 30px; margin-top: 20px; width: 400px }
+.wrap-new-project input[type=submit] { width: 200px }
+.wrap-new-project .cancel {
+	float: right;
+	margin-top: -25px;
+	margin-right: 25px;
+	font-weight: bold;
+	font-size: 15px;
+}

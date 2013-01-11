@@ -1,0 +1,82 @@
+
+<div class="wrap">
+
+<header>
+  <h1>Simple ToDo Lists</h1>
+  <h2>From Ruby Garage</h2>
+</header>
+
+<section>
+
+<% @projects.each do |project| %>
+
+<div class="table-wrap">
+  <table class="project-tasks">
+
+  <!--Name of Project -->
+    <thead>
+      <tr class="project">
+        <th></th>
+        <th class="project-name"><%= project.name %></th>
+        <th class="edit"><%= link_to 'Update', edit_project_path(project), :class => 'update-link' %><a href="#" class="update">Update</a></th>
+        <th class="del"><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></th>
+      </tr>
+    </thead>
+
+  <!-- Add New Task in Project -->
+    <tbody>
+    <tr class="nc">
+      <td colspan="4" class="add-new-task">
+        <script>
+          $('.add-new-task').load('/projects/1/tasks/new .wrap-new-task');
+        </script>
+      </td>
+    </tr>
+
+  <!-- Tasks List -->
+    <% project.tasks.each do |task| %>
+    <tr class="task-item">
+
+      <td class="done">
+       <%= check_box_tag task.done, 1, task.done, :disabled => true %>
+      </td>
+      <td class="task-name">
+        <span <% if task.done %> style="text-decoration: line-through;" <% end %> class="task-name">
+          <%= task.description %></span>
+      </td>
+      <td class="edit">
+        <%= link_to 'Update', edit_project_task_path(task.project, task), :class => 'update-link' %><a href="#" class="update">Update</a>
+      </td>
+      <td class="del">
+        <%= link_to 'Destroy', [task.project, task], :confirm => 'Are you sure?', :method => :delete %>
+      </td>
+
+    </tr>
+    <% end %>
+  </tbody>
+
+  </table>
+</div>
+
+<% end %>
+
+<a href="#" class="new-project">Add TODO List</a>
+
+</section>
+
+<footer>&copy Ruby Garage</footer>
+
+<div class="wrap-dialog"></div>
+
+</div>
+
+  <script>
+      $('.update').click(function(){ 
+        href=$(this).parent('.edit').find('a').attr("href");
+        hDiv= href + ' .wrap-update';
+        $('.wrap-dialog').load(hDiv).show('slow'); 
+      });
+      $('.new-project').click(function(){ 
+        $('.wrap-dialog').load('/projects/new .wrap-new-project').show('slow'); 
+      });
+  </script>
